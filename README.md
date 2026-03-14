@@ -1,46 +1,51 @@
-# Astro Starter Kit: Basics
+# Kipa Web
 
-```sh
-bun create astro@latest -- --template basics
+Web presence for Kipa - landing page, Terms of Service, Privacy Policy, and share collection placeholder.
+
+## Project Structure
+
+```
+src/
+  pages/
+    index.astro       # Landing
+    terms.astro       # Terms of Service
+    privacy.astro     # Privacy Policy
+    share/
+      [id].astro      # Share placeholder (future)
+  layouts/
+    BaseLayout.astro  # Shared layout + footer
+    Layout.astro      # Default layout wrapper
+  components/
+    Footer.astro      # Footer with legal links
+public/
+  favicon.png
+  icon.png
+  splash-icon.png
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Commands
 
-## 🚀 Project Structure
+| Command         | Action                                      |
+| :-------------- | :------------------------------------------ |
+| `bun install`   | Installs dependencies                       |
+| `bun run dev`   | Starts dev server at `localhost:4321`       |
+| `bun run build` | Build production site to `./dist/`          |
+| `bun run preview` | Preview the build locally                 |
 
-Inside of your Astro project, you'll see the following folders and files:
+## Deployment (Vercel)
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+1. Push the repo to GitHub.
+2. Go to [vercel.com](https://vercel.com) and import the repository.
+3. Vercel auto-detects Astro; no config needed. Deploy.
+4. Add custom domain `kipaapp.com` in Project Settings > Domains.
+
+## App Integration
+
+After the web is live, update the Kipa app `app.json`:
+
+```json
+"legal": {
+  "termsUrl": "https://kipaapp.com/terms",
+  "privacyUrl": "https://kipaapp.com/privacy"
+}
 ```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

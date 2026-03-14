@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return [{ params: { id: 'placeholder' } }];
+}
+
+const { id } = Astro.params;
+---
+
+<BaseLayout
+  title="Shared Collection"
+  description="View a shared Kipa collection."
+  canonical={`/share/${id}`}
+>
+  <main class="share-placeholder">
+    <div class="share-content">
+      <h1>Shared Collection</h1>
+      <p>This collection is not available or the link may have expired.</p>
+      <a href="/" class="cta-link">Go to Kipa</a>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .share-placeholder {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .share-content {
+    text-align: center;
+    max-width: 400px;
+  }
+
+  .share-content h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 1rem;
+  }
+
+  .share-content p {
+    font-size: 1rem;
+    color: #6b7280;
+    line-height: 1.6;
+    margin: 0 0 1.5rem;
+  }
+
+  .cta-link {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: #9c7ed4;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+  }
+
+  .cta-link:hover {
+    background: #8b6bc4;
+  }
+</style>

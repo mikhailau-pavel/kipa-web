@@ -1,0 +1,51 @@
+---
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  noIndex?: boolean;
+  openGraph?: { image?: string; type?: string };
+}
+
+const { title, description = 'Kipa - Save, organize, and manage your links.', canonical, noIndex = false, openGraph } = Astro.props;
+const fullTitle = title === 'Kipa' ? title : `${title} | Kipa`;
+const canonicalUrl = canonical ? new URL(canonical, Astro.site) : Astro.url;
+const ogImage = openGraph?.image ? new URL(openGraph.image, Astro.site) : new URL('/icon.png', Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonicalUrl} />}
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={openGraph?.type ?? 'website'} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+  </head>
+  <body>
+    <slot />
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  html,
+  body {
+    margin: 0;
+    min-height: 100%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1f2937;
+    line-height: 1.5;
+    background: #f8f6fc;
+  }
+</style>
