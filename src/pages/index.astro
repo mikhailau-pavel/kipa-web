@@ -9,7 +9,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 >
   <main class="landing">
     <section class="hero">
-      <img src="/icon.png" alt="Kipa" class="hero-icon" width="120" height="120" />
+      <div class="hero-icon-wrap">
+        <img src="/icon.png" alt="Kipa" class="hero-icon" width="120" height="120" />
+      </div>
       <h1 class="hero-title">Kipa</h1>
       <p class="hero-tagline">Save, organize, and manage your links</p>
       <p class="hero-description">
@@ -67,10 +69,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     margin-bottom: 4rem;
   }
 
-  .hero-icon {
-    display: block;
+  .hero-icon-wrap {
+    width: 110px;
+    height: 110px;
     margin: 0 auto 1.5rem;
-    border-radius: 24px;
+    border-radius: 22px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .hero-icon {
+    width: 120px;
+    height: 120px;
+    margin: -5px 0 0 -5px;
+    object-fit: cover;
+    display: block;
   }
 
   .hero-title {
